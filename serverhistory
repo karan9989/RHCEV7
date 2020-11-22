@@ -1,0 +1,89 @@
+   47  yum install samba samba-client -y
+   48  mkdir /test
+   49  man semanage-fcontext
+   50  semanage fcontext -a -t samba_share_t "/test(/.*)?"
+   51  restorecon -Rv /test/
+   52  ls -Zd /test/
+   53  vim /etc/samba/smb.conf
+   54  systemctl restart smb nmb
+   55  systemctl enable smb nmb
+   56  systemctl status smb nmb
+   57  firewall-cmd --permanent --add-service=samba
+   58  firewall-cmd --reload 
+   59  vim /etc/samba/smb.conf
+   60  ip a
+   68  useradd user1
+   69  useradd user2
+   70  smbpasswd -a user1
+   71  smbpasswd -a user2
+   72  systemctl restart smb nmb
+   73  firewall-cmd --reload 
+   74  mkdir /smbdata
+   75  rm /smbdata/
+   76  rm -rvf /smbdata/
+   77  mkdir /smbdata
+   78  semanage fcontext -a -t samba_share_t "/smbdata(/.*)?"
+   79  ls -Zd /smbdata/
+   80  restorecon -Rv /smbdata/
+   81  ls -Zd /smbdata/
+   82  vim /etc/samba/smb.conf
+   83  setfacl -m u:user1:rwx /smbdata/
+   84  setfacl -m u:user2:r-x /smbdata/
+   85  getsebool -a | grep -i samba
+   86  setsebool -P samba_export_all_ro on
+   87  setsebool -P samba_export_all_rw on
+   88  getsebool -a | grep -i samba
+   89  systemctl restart smb nmb
+   90  firewall-cmd --reload 
+   91  fdisk -l
+   92  reboot
+   93  ssh root@192.168.171.150
+   94  history 
+   95  fdisk -l
+   96  lsblk
+   97  vgcreate myvg /dev/sdb
+   98  lvcreate -l 100%FREE -n mylv myvg
+   99  yum install targetcli -y
+  100  targetcli
+  101  firewall-cmd --permanent --add-port=3260/tcp
+  102  firewall-cmd --reload 
+  103  targetcli
+  104  firewall-cmd --reload 
+  105  firewall-cmd --permanent --add-port=3260/tcp
+  106  firewall-cmd --reload 
+  107  yum groupinstallmariadb
+  108  yum groupinstall mariadb
+  109  systemctl restart mariadb
+  110  systemctl enable mariadb
+  111  mysql_secure_installation 
+  112  mysql -uroot -predhat
+  113  history 
+  114  mysql -uroot -predhat
+  115  firewall-cmd --permanent --add-service=mysql
+  116  firewall-cmd --reload
+  117  mysql -uroot -predhat
+  118  firewall-cmd --reload
+  127  nmcli connection down "Wired connection 1"
+  128  nmcli connection down "Wired connection 2"
+  129  ip a
+  130  #nmcli connection add type team con-name test ifname test config 
+  132  cat /usr/share/doc/teamd-1.27/example_configs/activebackup_arp_ping_1.conf 
+  133  nmcli connection add type team con-name test ifname test config '{"runner":{"name": "activebackup"}}'
+  134  nmcli connection add type team-slave con-name ens37 ifname ens37 master test
+  135  nmcli connection add type team-slave con-name ens38 ifname ens38 master test
+  136  nmcli connection show
+  137  teamdctl test state
+  138  ip a
+  139  nmcli connection modify test ipv4.addresses "192.168.171.155"
+  140  nmcli connection modify test ipv4.method static
+  142  nmcli connection down test
+  143  nmcli connection up test
+  144  nmcli connection up ens37
+  145  nmcli connection up ens38
+  146  teamdctl test state
+  147  nmcli connection down ens37
+  148  teamdctl test state
+  149  nmcli connection up ens37
+  150  teamdctl test state
+  151  ip a
+  152  history > serverhistory

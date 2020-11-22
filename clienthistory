@@ -1,0 +1,70 @@
+  147  yum install samba-client cifs-utils -y
+  148  history 
+  149  mkdir /data
+  150  vim /etc/fstab 
+  151  mount -a
+  152  df -hT
+  153  mkdir /kar
+  154  vim /etc/fstab 
+  155  vim /root
+  156  vim /root/sec
+  157  mount -a
+  158  df -hT
+  159  history 
+  160  cat /etc/fstab 
+  161  yum install iscsi-initiator-utils -y
+  162  man iscsiadm
+  163  iscsiadm --mode discoverydb --type sendtargets --portal 192.168.171.151 --discover
+  164  man iscsiadm
+  165  iscsiadm --mode node --targetname iqn.2018-19.example.com:test --portal 192.168.1.1:3260 --login
+  166  iscsiadm --mode node --targetname iqn.2018-19.example.com --portal 192.168.1.1:3260 --login
+  167  iscsiadm --mode node --targetname iqn.2018-19.example.com --portal 192.168.171.151:3260 --login
+  168  vim /etc/iscsi/initiatorname.iscsi 
+  169  systemctl restart iscsid
+  170  systemctl restart iscsi
+  171  iscsiadm --mode node --targetname iqn.2018-19.example.com --portal 192.168.171.151:3260 --login
+  172  fdisk -l
+  173  lsblk
+  174  iscsiadm --mode node --targetname iqn.2018-19.example.com --portal 192.168.171.151:3260 --logout
+  175  iscsiadm --mode node --targetname iqn.2018-19.example.com --portal 192.168.171.151:3260 --login
+  176  lsblk
+  177  iscsiadm --mode node --targetname iqn.2018-19.example.com --portal 192.168.171.151:3260 --logout
+  178  systemctl restart iscsid
+  179  iscsiadm --mode node --targetname iqn.2018-19.example.com --portal 192.168.171.151:3260 --login
+  180  lsblk
+  181  iscsiadm --mode node --targetname iqn.2018-19.example.com --portal 192.168.1.1:3260 --login
+  182  iscsiadm --mode discoverydb --type sendtargets --portal 192.168.171.151 --discover
+  183  vim /etc/iscsi/initiatorname.iscsi 
+  184  cat /etc/iscsi/initiatorname.iscsi 
+  185  systemctl restart iscsid
+  186  systemctl restart iscsi
+  187  systemctl status iscsi
+  191  iscsiadm --mode node --targetname iqn.2018-19.example.com --portal 192.168.1.1:3260 --login
+  192  iscsiadm --mode node --targetname iqn.2018-19.example.com --portal 192.168.171.151:3260 --login
+  193  fdisk -l
+  194  lsblk
+  195  iscsiadm --mode node --targetname iqn.2018-19.example.com --portal 192.168.171.151:3260 --logout
+  196  lsblk
+  197  iscsiadm --mode node --targetname iqn.2018-19.example.com --portal 192.168.171.151:3260 --logout
+  198  iscsiadm --mode node --targetname iqn.2018-19.example.com --portal 192.168.171.151:3260 --login
+  211  yum groupinstall mariadb-client -y
+  212  mysql -ukar -p redhat
+  213  mysql -ukaran -predhat
+  214  mysql -ukaran -predhat -h 192.168.171.151
+  215  vim test.sh
+  216  sh test.sh 
+  217  sh test.sh happy
+  218  sh test.sh Happy
+  219  vim test.sh
+  220  sh test.sh Happy
+  221  vim test.sh
+  222  sh test.sh Happy
+  223  sh test.sh happy
+  224  sh test.sh Good
+  225  sh test.sh adkj
+  226  vim test.sh
+  242  vim /etc/fstab 
+  243  mount -a
+  244  vim /etc/hosts
+  245  history 
+  246  history > clienthistory
